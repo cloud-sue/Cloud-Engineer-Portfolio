@@ -20,14 +20,14 @@
 
 <table>
   <tr>
-    <td>운영<br>체제</td>
+    <td>운영체제</td>
     <td>
       <img src = "https://img.shields.io/badge/Rocky%20Linux-10B981?style=for-the-badge&logo=rockylinux&logoColor=white">
       <img src = "https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black">
     </td>
   </tr>
   <tr>
-    <td>클라<br>우드</td>
+    <td>클라우드</td>
     <td>
       <img src = "https://img.shields.io/badge/Microsoft%20Azure-0078D4?style=for-the-badge&logo=microsoftazure&logoColor=white">
       <img src = "https://img.shields.io/badge/VMSS-0078D4?style=for-the-badge&logo=microsoftazure&logoColor=white">
@@ -44,20 +44,20 @@
     </td>
   </tr>
   <tr>
-    <td>서버<br>환경</td>
+    <td>서버환경</td>
     <td>
       <img src = "https://img.shields.io/badge/Apache%20Tomcat%209.0-D22128?style=for-the-badge&logo=Apache%20Tomcat&logoColor=white">
       <img src = "https://img.shields.io/badge/Apache-D22128?style=for-the-badge&logo=apache&logoColor=white">
     </td>
   </tr>
   <tr>
-    <td>프레임<br>워크</td>
+    <td>프레임워크</td>
     <td>
       <img src = "https://img.shields.io/badge/spring-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=white">
     </td>
   </tr>
   <tr>
-    <td>데이터<br>베이스</td>
+    <td>데이터베이스</td>
     <td>
       <img src = "https://img.shields.io/badge/Azure%20Database%20for%20MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white">
     </td>
