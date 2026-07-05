@@ -3,6 +3,11 @@
 > [베스핀글로벌] 멀티클라우드 취업실무과정 — Azure 1팀 (Azure씨들)
 > Auto Scaling 및 Multi-AZ 기반 무중단 고가용성 웹 서비스 인프라
 
+
+ ## 📎 링크
+ 
+- WAS Repo: [cloud-sue/pj1_team_petclinic_was](https://github.com/cloud-sue/pj1_team_petclinic_was.git)
+
 ---
 
 ## 📌 프로젝트 개요
