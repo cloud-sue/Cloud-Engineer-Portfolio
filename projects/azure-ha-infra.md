@@ -16,6 +16,13 @@
 
 ---
 
+
+## 📅 프로젝트 기간
+
+`2025.03.30 ~ 2025.04.10` (총 2주)
+
+---
+
 ## 🛠 기술 스택
 
 <table>
@@ -93,12 +100,30 @@
 
 | 담당 | 역할 | 주요 업무 |
 |------|------|-----------|
-| 이상일 (팀장) | WEB | AGW 설정, VMSS 구현, DNS 설정, Apache Proxy 설정, 모니터링/경보 체계 구축, 부하테스트 |
+| 이*일 (팀장) | WEB | AGW 설정, VMSS 구현, DNS 설정, Apache Proxy 설정, 모니터링/경보 체계 구축, 부하테스트 |
 | 박수현 (팀원) | WAS | AGW 설정, VMSS 구현, 코드 리팩토링, Tomcat 설정, 모니터링/경보 체계 구축, 부하테스트 |
-| 박가영 (팀원) | DB | 고가용성 DB 설계, 조회 성능 최적화, DB Failover 테스트, 백업/복구 정책 수립 |
-| 전동진 (멘토) | — | 아키텍처 리뷰 및 기술 지도 |
+| 박*영 (팀원) | DB | 고가용성 DB 설계, 조회 성능 최적화, DB Failover 테스트, 백업/복구 정책 수립 |
+| 전*진 (멘토-BespinGlobal) | — | 아키텍처 리뷰 및 기술 지도 |
 
 ---
+
+<br>
+🙋‍♂️ My Part — 박수현 (WAS 계층 전담)
+
+
+본 프로젝트에서 저는 WAS 계층을 전담했습니다.
+
+
+
+Role  :  WAS (Web Application Server) Tier
+Stack :  Application Gateway · VMSS · Tomcat 9.0 · Spring PetClinic · Azure MySQL
+
+
+⚙️ Internal Application Gateway 설정 — L7 기반 경로 라우팅(/petclinic) 및 Health Check 구성
+📈 WAS VMSS 구현 — Auto Scaling(Min 2 / Max 20) 및 Pre-warm 정책 적용
+🐱 Tomcat 9.0 서버 구축 — Systemd 서비스 등록, 데이터 디스크 마운트, 골든 이미지 제작
+🔧 PetClinic 코드 리팩토링 — 환경 변수 기반 Azure MySQL 접속 정보 주입(보안 처리), 시스템 시각화(Zone/Host/DB) 기능 추가
+📊 모니터링/경보 체계 구축 & 부하테스트 — Grafana·Slack 연동, nGrinder 성능 검증(단일 VM → VMSS Scale-out으로 TPS 3배 향상)
 
 ## 🏗 아키텍처
 
@@ -183,6 +208,3 @@
 
 ---
 
-## 📅 개발 기간
-
-`2025.03.30 ~ 2025.04.10` (총 2주)
