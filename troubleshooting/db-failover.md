@@ -1,33 +1,83 @@
+# DB Failover 시 Connection 갱신 문제
+
+> DB Failover로 Zone이 전환되었지만, 애플리케이션의 Connection 객체가 기존 연결을 유지해 새 DB 정보가 반영되지 않던 문제를 해결한 기록입니다.
+
+| 항목 | 내용 |
+|------|------|
+| 프로젝트 | Azure 기반 고가용성 웹 서비스 인프라 구축 |
+| 기간 | 2026.03.27 ~ 2026.04.10 |
+| 역할 | WAS Tier |
+| 사용 기술 | Tomcat, Auto Scaling, Load Balancer, Spring DataSource |
+| 한 줄 요약 | DB Failover 시 DB Connection이 갱신되지 않는 문제를 코드 수정으로 해결 |
+
 ---
-title: DB Failover Troubleshooting
+
+## 1. 상황 (Situation)
+
+중간 프로젝트에서 **WAS Tier**를 담당했습니다. 웹사이트 최상단에는 시스템 정보를 시각화하는 영역이 있고, 이곳에 현재 연결된 DB 정보가 표시되도록 되어 있었습니다.
+
+**DB Failover 테스트** 도중 Zone이 전환되었을 때, 새로 연결되어야 할 DB 정보가 화면에 표시되지 않는 문제가 발생했습니다. 안정적인 서비스 구축을 위해 **프로젝트 기간 내에 반드시 해결해야 하는** 과제였습니다.
+
 ---
 
-<link rel="stylesheet" href="../assets/style.css">
+## 2. 과제 (Task)
 
-<div class="shell top-nav"><div class="logo">Troubleshooting 01</div><div class="nav-links"><a href="../index.html">Home</a></div></div>
+- 장애로 인해 다른 Zone의 DB로 전환되더라도 **애플리케이션이 새 DB에 정상적으로 연결**되도록 만들어야 했습니다.
+- 이를 해결하지 못하면 DB 장애 발생 시 **서비스 전체가 함께 멈추는** 상황이 발생합니다.
 
-<main class="shell">
-<section class="hero">
-  <div class="eyebrow">STAR TROUBLESHOOTING</div>
-  <h1>DB Failover 후<br/>Connection 갱신 문제 해결</h1>
-  <p class="lead">인프라 장애가 아닌 애플리케이션 워크로드 관점까지 함께 분석해 해결한 트러블슈팅 경험입니다.</p>
-</section>
+---
 
-<section class="color-block cream">
-  <div class="grid grid-2">
-    <div class="card"><h3>Situation</h3><p>Azure 기반 고가용성 웹 인프라 프로젝트에서 WAS Tier를 담당했습니다. DB Failover 테스트 중 DB Zone이 변경되었지만 화면에 표시되는 DB Host 정보가 갱신되지 않았습니다.</p></div>
-    <div class="card"><h3>Task</h3><p>DB 장애가 발생해 다른 Zone의 DB로 전환되더라도 애플리케이션이 정상적으로 새 DB 연결을 사용하도록 해야 했습니다.</p></div>
-    <div class="card"><h3>Action</h3><p>nslookup으로 DB DNS 변경은 확인했지만, 애플리케이션의 Connection 객체가 기존 연결을 유지하고 있다는 점을 파악했습니다. DataSource 설정을 수정해 연결 객체가 문제 상황에서 갱신되도록 개선했습니다.</p></div>
-    <div class="card"><h3>Result</h3><p>DB Host 정보가 정상적으로 출력되었고, DB Failover 이후에도 애플리케이션이 안정적으로 서비스될 수 있는 구조를 검증했습니다.</p></div>
-  </div>
-</section>
+## 3. 행동 (Action)
 
-<section class="section">
-  <h2 class="section-title">Why it matters</h2>
-  <div class="color-block lime">
-    <p class="lead">이 경험의 핵심은 인프라가 정상적으로 Failover되더라도 애플리케이션 연결 객체가 갱신되지 않으면 서비스 장애가 계속될 수 있다는 점을 확인한 것입니다. 클라우드 운영에서는 인프라와 워크로드를 분리해서 보지 않고 함께 분석해야 합니다.</p>
-  </div>
-</section>
+### 원인 분석 흐름
 
-<footer class="footer">BACK TO <a href="../index.html">PORTFOLIO HOME</a></footer>
-</main>
+```
+DB Failover 테스트
+   ↓
+DB 정보 시각화 불가 문제 발생
+   ↓
+nslookup으로 확인 → DB의 DNS가 변경된 것을 인지
+   ↓
+워크로드(애플리케이션)의 Connection 객체가 자동으로 갱신되지 않음을 인지
+   ↓
+Connection 객체에 문제가 있을 경우 재생성되도록 코드 수정
+```
+
+Failover로 **DB의 DNS는 정상적으로 변경**되었으나, 애플리케이션이 기존 Connection 객체를 그대로 유지하면서 이전 연결 정보를 붙잡고 있는 것이 근본 원인이었습니다.
+
+### 선택한 해결 방법과 이유
+
+- `DataSource-config.xml`의 DataSource `<bean>` 태그 옵션을 수정해, **Connection 객체가 다시 생성될 수 있도록** 설정했습니다.
+- 초기에는 서버에서 시스템 정보를 받아와 Redeploy하는 방식도 검토했으나, **스크립트를 자동 실행시키는 등 인프라 워크로드가 과도**해 배제했습니다.
+- 가장 중요하게 고려한 기준은 **자동화**였습니다. 바뀐 DB 정보가 자동으로 반영되도록 만드는 것을 목표로 방향을 잡았습니다.
+
+### 차별화된 접근
+
+Spring 등 개발 지식을 갖추고 있었기 때문에 **인프라 계층뿐 아니라 애플리케이션 워크로드 계층의 문제까지 인지하고 해결**할 수 있었습니다. 인프라 관점에서만 접근했다면 DNS는 정상인데 화면에는 반영되지 않는 상황에서 원인을 애플리케이션 Connection 객체로 좁히기 어려웠을 것입니다.
+
+---
+
+## 4. 결과 (Result)
+
+- **DB Host 정보 출력 불가 → 출력 가능**으로 문제 해결
+- DB Failover 상황에서도 **안정적으로 서비스 운영이 가능**해졌습니다.
+- 팀 내에서 DB 장애 해결에 대한 긍정적인 평가를 받았습니다.
+
+| 구분 | Before | After |
+|------|--------|-------|
+| DB Host 정보 출력 | 불가 | 가능 |
+| Failover 후 서비스 | 중단 위험 | 안정적 운영 |
+
+---
+
+## 5. 배운 점 & 활용
+
+- 서비스 운영에서 **인프라만 잘 갖춰져 있어도 애플리케이션(워크로드)이 받쳐주지 않으면 정상 운영이 어렵다**는 점을 체감했습니다.
+- 인프라와 워크로드를 분리된 영역이 아니라 **하나의 운영 흐름**으로 바라보는 관점을 얻었습니다.
+- 입사 후에도 인프라뿐 아니라 **워크로드 계층에서 발생하는 문제까지 원인을 추적하고 해결**할 수 있습니다.
+
+---
+
+## Security Notice
+
+본 문서에는 실제 DB 접속 정보, 계정, 호스트명, 비밀번호 등 민감 정보를 포함하지 않습니다.
