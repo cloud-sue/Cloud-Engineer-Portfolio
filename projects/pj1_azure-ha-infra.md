@@ -121,7 +121,7 @@ Stack :  Application Gateway · VMSS · Tomcat 9.0 · Spring PetClinic · Azure 
 ## 🏗 아키텍처
 
 <p align="center">
-  <img src="../images/azure-ha-architecture.png" alt="Azure 고가용성 3-Tier 아키텍처" width="100%">
+  <img src="../images/pj1_azure-ha-architecture.png" alt="Azure 고가용성 3-Tier 아키텍처" width="100%">
 </p>
 
 > `Client → DNS → Public AGW → Web VMSS → Internal AGW → WAS VMSS → Azure MySQL` 구조의 Multi-AZ 기반 3-Tier 아키텍처
