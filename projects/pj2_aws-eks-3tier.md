@@ -7,7 +7,7 @@
 
 ## 📌 프로젝트 개요
 
-Spring PetClinic 애플리케이션을 **컨테이너 기반 3-Tier(WEB/WAS/DB)** 구조로 AWS EKS 위에 배포·운영한 개인 프로젝트입니다. 멀티 스테이지 Dockerfile로 이미지를 경량화하고, ECR·Secret·Ingress를 활용해 실서비스에 가까운 컨테이너 운영 환경을 직접 구성했습니다.
+PetClinic 애플리케이션을 **컨테이너 기반 3-Tier(WEB/WAS/DB)** 구조로 AWS EKS 위에 배포·운영한 개인 프로젝트입니다. 멀티 스테이지 Dockerfile로 이미지를 경량화하고, ECR·Secret·Ingress를 활용해 실서비스에 가까운 컨테이너 운영 환경을 직접 구성했습니다.
 
 - **주제**: 쿠버네티스 관리형 서비스(EKS) 운영하기
 - **목표**: 컨테이너 기반 MSA 서비스를 스스로 학습·운영하여 컨테이너/MSA 환경 숙지
@@ -55,7 +55,7 @@ Spring PetClinic 애플리케이션을 **컨테이너 기반 3-Tier(WEB/WAS/DB)*
     </td>
   </tr>
   <tr>
-    <td>언어 &<br>빌드</td>
+    <td>언어 &빌드</td>
     <td>
       <img src = "https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white">
       <img src = "https://img.shields.io/badge/Apache%20Maven-C71A36?style=for-the-badge&logo=apachemaven&logoColor=white">
