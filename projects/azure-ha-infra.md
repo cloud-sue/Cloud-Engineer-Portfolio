@@ -1,4 +1,4 @@
-# Azure 기반 고가용성 3-Tier 웹 서비스 인프라 구축
+# Azure 기반 고가용성 3-Tier 웹 서비스 인프라 구축(petclinic)
 
 > [베스핀글로벌] 멀티클라우드 취업실무과정 — Azure 1팀 (Azure씨들)
 > Auto Scaling 및 Multi-AZ 기반 무중단 고가용성 웹 서비스 인프라
