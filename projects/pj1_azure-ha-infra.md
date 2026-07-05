@@ -16,6 +16,11 @@
 
 ---
 
+## 📅 프로젝트 기간
+
+`2025.03.30 ~ 2025.04.10` (총 2주)
+---
+
 ## 🛠 기술 스택
 
 <table>
@@ -198,8 +203,4 @@ Stack :  Application Gateway · VMSS · Tomcat 9.0 · Spring PetClinic · Azure 
 - Read-Replica를 활용한 DB 읽기 성능 개선
 - 자동 장애 복구 스크립트 도입
 
----
 
-## 📅 개발 기간
-
-`2025.03.30 ~ 2025.04.10` (총 2주)
