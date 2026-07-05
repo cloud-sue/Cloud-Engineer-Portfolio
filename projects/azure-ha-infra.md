@@ -1,4 +1,4 @@
-# Azure 기반 고가용성 3-Tier 웹 서비스 인프라 구축(petclinic)
+# Azure 기반 고가용성 3-Tier 웹 서비스 인프라 구축
 
 > [베스핀글로벌] 멀티클라우드 취업실무과정 — Azure 1팀 (Azure씨들)
 > Auto Scaling 및 Multi-AZ 기반 무중단 고가용성 웹 서비스 인프라
@@ -18,16 +18,72 @@
 
 ## 🛠 기술 스택
 
-| 구분 | 사용 기술 |
-|------|-----------|
-| Cloud | Microsoft Azure |
-| Compute | VMSS (Virtual Machine Scale Sets), Rocky Linux 9.0 |
-| Load Balancer | Application Gateway (L7), Azure Traffic Manager |
-| Database | Azure Database for MySQL (Flexible Server) |
-| Application | Tomcat 9.0, Java (Spring PetClinic), Apache |
-| Monitoring | Grafana, Slack Alert |
-| Load Test | nGrinder (Groovy) |
-| Etc | Bastion Host, NAT Gateway, DBeaver, Static Web Hosting |
+<table>
+  <tr>
+    <td>운영<br>체제</td>
+    <td>
+      <img src = "https://img.shields.io/badge/Rocky%20Linux-10B981?style=for-the-badge&logo=rockylinux&logoColor=white">
+      <img src = "https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black">
+    </td>
+  </tr>
+  <tr>
+    <td>클라<br>우드</td>
+    <td>
+      <img src = "https://img.shields.io/badge/Microsoft%20Azure-0078D4?style=for-the-badge&logo=microsoftazure&logoColor=white">
+      <img src = "https://img.shields.io/badge/VMSS-0078D4?style=for-the-badge&logo=microsoftazure&logoColor=white">
+      <img src = "https://img.shields.io/badge/Application%20Gateway-0078D4?style=for-the-badge&logo=microsoftazure&logoColor=white">
+      <img src = "https://img.shields.io/badge/Traffic%20Manager-0078D4?style=for-the-badge&logo=microsoftazure&logoColor=white">
+    </td>
+  </tr>
+  <tr>
+    <td>언어</td>
+    <td>
+      <img src = "https://img.shields.io/badge/java-%23ED8B00.svg?style=for-the-badge&logo=openjdk&logoColor=white">
+      <img src = "https://img.shields.io/badge/Groovy-4298B8?style=for-the-badge&logo=apachegroovy&logoColor=white">
+      <img src = "https://img.shields.io/badge/Shell%20Script-121011?style=for-the-badge&logo=gnubash&logoColor=white">
+    </td>
+  </tr>
+  <tr>
+    <td>서버<br>환경</td>
+    <td>
+      <img src = "https://img.shields.io/badge/Apache%20Tomcat%209.0-D22128?style=for-the-badge&logo=Apache%20Tomcat&logoColor=white">
+      <img src = "https://img.shields.io/badge/Apache-D22128?style=for-the-badge&logo=apache&logoColor=white">
+    </td>
+  </tr>
+  <tr>
+    <td>프레임<br>워크</td>
+    <td>
+      <img src = "https://img.shields.io/badge/spring-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=white">
+    </td>
+  </tr>
+  <tr>
+    <td>데이터<br>베이스</td>
+    <td>
+      <img src = "https://img.shields.io/badge/Azure%20Database%20for%20MySQL-4479A1?style=for-the-badge&logo=mysql&logoColor=white">
+    </td>
+  </tr>
+  <tr>
+    <td>모니<br>터링</td>
+    <td>
+      <img src = "https://img.shields.io/badge/Grafana-F46800?style=for-the-badge&logo=grafana&logoColor=white">
+      <img src = "https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white">
+    </td>
+  </tr>
+  <tr>
+    <td>테스트</td>
+    <td>
+      <img src = "https://img.shields.io/badge/nGrinder-00A98F?style=for-the-badge&logo=naver&logoColor=white">
+    </td>
+  </tr>
+  <tr>
+    <td>도구</td>
+    <td>
+      <img src = "https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white">
+      <img src = "https://img.shields.io/badge/DBeaver-372923?style=for-the-badge&logo=dbeaver&logoColor=white">
+      <img src = "https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white">
+    </td>
+  </tr>
+</table>
 
 ---
 
@@ -58,6 +114,7 @@
 | snet-bastion | Bastion Server | 10.0.10.0/24 | O |
 
 ### 보안 그룹(NSG) 설계
+
 - **NSG-web**: WEB의 AGW를 통해서만 접속 허용 (AzureLoadBalancer 소스)
 - **NSG-agw-was-internal**: WEB 서브넷(10.0.1.0/24)에서 오는 8080 포트만 허용
 - **NSG-db**: WAS 서브넷(10.0.2.0/24)에서 오는 3306 포트만 허용
@@ -114,9 +171,11 @@
 ## 🚀 향후 개선 방안
 
 **보완점 (보안 고도화)**
+
 - HTTPS 보안 적용 / WAF 도입 / Azure Key Vault 활용
 
 **개선 방안**
+
 - 글로벌 사용자를 위한 CDN 적용
 - DR 시스템 고도화
 - Read-Replica를 활용한 DB 읽기 성능 개선
