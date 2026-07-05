@@ -85,9 +85,9 @@ Kubernetes, Terraform, CI/CD, Multi-Cloud DR 환경을 설계·구현하며 클�
 
 | No | Project | Type | Key Point |
 |---|---|---|---|
-| 01 | [Multi-Cloud DR 기반 K-Beauty Commerce Platform](./projects/multi-cloud-dr.md) | Team | Azure 메인 + AWS DR, Terraform, AKS/EKS, CI/CD, Redis, HTTPS |
-| 02 | [AWS EKS 기반 3-Tier Container Service](./projects/aws-eks-3tier.md) | Personal | EKS, ECR, RDS, Bastion, Secret, Deployment/Service/Ingress |
-| 03 | [Azure 기반 고가용성 Web Infrastructure](./projects/azure-ha-infra.md) | Team | VMSS, Application Gateway, Auto Scaling, Multi-AZ, DB Failover |
+| 01 | [Multi-Cloud DR 기반 K-Beauty Commerce Platform](./projects/pj3_multi-cloud-dr.md) | Team | Azure 메인 + AWS DR, Terraform, AKS/EKS, CI/CD, Redis, HTTPS |
+| 02 | [AWS EKS 기반 3-Tier Container Service](./projects/pj2_aws-eks-3tier.md) | Personal | EKS, ECR, RDS, Bastion, Secret, Deployment/Service/Ingress |
+| 03 | [Azure 기반 고가용성 Web Infrastructure](./projects/pj1_azure-ha-infra.md) | Team | VMSS, Application Gateway, Auto Scaling, Multi-AZ, DB Failover |
 
 ---
 
