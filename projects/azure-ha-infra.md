@@ -63,7 +63,7 @@
     </td>
   </tr>
   <tr>
-    <td>모니<br>터링</td>
+    <td>모니터링</td>
     <td>
       <img src = "https://img.shields.io/badge/Grafana-F46800?style=for-the-badge&logo=grafana&logoColor=white">
       <img src = "https://img.shields.io/badge/Slack-4A154B?style=for-the-badge&logo=slack&logoColor=white">
