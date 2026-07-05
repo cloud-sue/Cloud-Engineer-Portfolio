@@ -3,6 +3,10 @@
 > 쿠버네티스 관리형 서비스(EKS) 기반 컨테이너 3-Tier 웹 서비스 운영 (개인 프로젝트)
 > EKS 기술을 스스로 학습·운영하며 <br> 컨테이너와 MSA 환경을 체득하기 위한 프로젝트
 
+ ## 📎 링크
+ 
+- Repo: [cloud-sue/pj2_aws-eks](https://github.com/cloud-sue/pj2_personal_k8s.git)
+
 ---
 
 ## 📌 프로젝트 개요
