@@ -99,7 +99,7 @@ Spring PetClinic 애플리케이션을 **컨테이너 기반 3-Tier(WEB/WAS/DB)*
 ## 🏗 아키텍처
 
 <p align="center">
-  <img src="../images/aws-eks-3tier-architecture.png" alt="AWS EKS 3-Tier 아키텍처" width="100%">
+  <img src="../images/pj2_aws-eks-architecture.png" alt="AWS EKS 3-Tier 아키텍처" width="100%">
 </p>
 
 > Multi-AZ(ap-northeast-2a / 2c) 구성으로 Public/Private Subnet을 분리하고, EKS 클러스터 내 WEB·WAS Pod를 배치, DB는 Private Subnet의 RDS(MySQL)로 격리한 3-Tier 구조
