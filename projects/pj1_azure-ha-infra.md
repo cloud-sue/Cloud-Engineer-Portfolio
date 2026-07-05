@@ -123,23 +123,12 @@ Stack :  Application Gateway · VMSS · Tomcat 9.0 · Spring PetClinic · Azure 
 ---
 
 ## 🏗 아키텍처
-ㅇㅇ
-
-README 파일 만들겠습니다. 먼저 관련 스킬을 확인하겠습니다.
-
-
-Read the markdown skill before creating the README file
-Read the markdown skill before creating the README file
-md 스킬은 없으니 바로 파일을 생성하겠습니다.
+<p align="center">
+  <img src="../images/azure-ha-architecture.png" alt="Azure 고가용성 3-Tier 아키텍처" width="100%">
+</p>
 
 
-파일 생성됨, 파일 읽음
-파일 생성됨, 파일 읽음
-기술 스택 섹션까지 합쳐서 전체 README를 완성했습니다. GitHub에 올리면 뱃지와 표가 그대로 렌더링됩니다. 아키텍처 다이어그램 이미지를 삽입하거나 데모 링크를 추가하고 싶으면 말씀해 주세요.
 
-
-Readme
-문서 · MD 
 ## 👥 팀 구성 및 역할
 계층별 전담제(Web·WAS·DB)를 통한 전문적 3-Tier 인프라 구축
 | 담당 | 역할 | 주요 업무 |
