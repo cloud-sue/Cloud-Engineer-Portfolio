@@ -9,8 +9,8 @@ Kubernetes, Terraform, CI/CD, Multi-Cloud DR 환경을 설계·구현하며 클�
 
 <br/>
 
-<a href="https://your-github-id.github.io/cloud-engineer-portfolio/"><img src="https://img.shields.io/badge/Portfolio-000000?style=for-the-badge&logo=githubpages&logoColor=white" /></a>
-<a href="https://github.com/your-github-id"><img src="https://img.shields.io/badge/GitHub-ffffff?style=for-the-badge&logo=github&logoColor=000000" /></a>
+<a href="https://github.com/cloud-sue/Cloud-Engineer-Portfolio.git"><img src="https://img.shields.io/badge/Portfolio-000000?style=for-the-badge&logo=githubpages&logoColor=white" /></a>
+<a href="https://github.com/cloud-sue"><img src="https://img.shields.io/badge/GitHub-ffffff?style=for-the-badge&logo=github&logoColor=000000" /></a>
 
 </div>
 
@@ -85,9 +85,9 @@ Kubernetes, Terraform, CI/CD, Multi-Cloud DR 환경을 설계·구현하며 클�
 
 | No | Project | Type | Key Point |
 |---|---|---|---|
-| 01 | [Multi-Cloud DR 기반 K-Beauty Commerce Platform](./projects/multi-cloud-dr.md) | Team | Azure 메인 + AWS DR, Terraform, AKS/EKS, CI/CD, Redis, HTTPS |
-| 02 | [AWS EKS 기반 3-Tier Container Service](./projects/aws-eks-3tier.md) | Personal | EKS, ECR, RDS, Bastion, Secret, Deployment/Service/Ingress |
-| 03 | [Azure 기반 고가용성 Web Infrastructure](./projects/azure-ha-infra.md) | Team | VMSS, Application Gateway, Auto Scaling, Multi-AZ, DB Failover |
+| 01 | [Multi-Cloud DR 기반 K-Beauty Commerce Platform](./projects/pj3_multi-cloud-dr.md) | Team | Azure 메인 + AWS DR, Terraform, AKS/EKS, CI/CD, Redis, HTTPS |
+| 02 | [AWS EKS 기반 3-Tier Container Service](./projects/pj2_aws-eks-3tier.md) | Personal | EKS, ECR, RDS, Bastion, Secret, Deployment/Service/Ingress |
+| 03 | [Azure 기반 고가용성 Web Infrastructure](./projects/pj1_azure-ha-infra.md) | Team | VMSS, Application Gateway, Auto Scaling, Multi-AZ, DB Failover |
 
 ---
 
@@ -113,7 +113,7 @@ Kubernetes, Terraform, CI/CD, Multi-Cloud DR 환경을 설계·구현하며 클�
 단일 클라우드 장애 시 서비스 전체가 중단되는 문제를 줄이기 위해 Azure-AWS 이중 구조를 설계했습니다.  
 Terraform, Kubernetes, CI/CD, Redis, HTTPS를 개별 기술이 아니라 **운영 흐름**으로 연결한 것이 핵심입니다.
 
-[프로젝트 상세 보기](./projects/multi-cloud-dr.md)
+[프로젝트 상세 보기](./projects/pj3_multi-cloud-dr.md)
 
 ---
 
