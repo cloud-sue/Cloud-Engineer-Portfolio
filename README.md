@@ -9,7 +9,7 @@ Kubernetes, Terraform, CI/CD, Multi-Cloud DR 환경을 설계·구현하며 클�
 
 <br/>
 
-<a href="https://cloud-sue.github.io/cloud-engineer-portfolio/"><img src="https://img.shields.io/badge/Portfolio-111111?style=for-the-badge&logo=githubpages&logoColor=white" /></a>
+<a href="https://cloud-sue.github.io/Cloud-Engineer-Portfolio"><img src="https://img.shields.io/badge/Portfolio-111111?style=for-the-badge&logo=githubpages&logoColor=white" /></a>
 <a href="https://github.com/cloud-sue"><img src="https://img.shields.io/badge/GitHub-f5f1ec?style=for-the-badge&logo=github&logoColor=111111" /></a>
 
 </div>
