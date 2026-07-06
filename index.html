@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>박수현 · Cloud Engineer Portfolio</title>
+<meta name="description" content="Application을 이해하는 Cloud Engineer, 박수현의 포트폴리오. Azure/AWS 멀티클라우드, Kubernetes, Terraform, CI/CD, DR 아키텍처 프로젝트.">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css">
+<style>
+:root{
+  --primary:#e60023;
+  --on-primary:#ffffff;
+  --primary-pressed:#cc001f;
+  --ink:#000000;
+  --ink-soft:#211922;
+  --body:#33332e;
+  --charcoal:#262622;
+  --mute:#62625b;
+  --ash:#91918c;
+  --stone:#c8c8c1;
+  --hairline:#dadad3;
+  --hairline-soft:#e5e5e0;
+  --secondary-bg:#e5e5e0;
+  --secondary-pressed:#c8c8c1;
+  --canvas:#ffffff;
+  --surface-soft:#fbfbf9;
+  --surface-card:#f6f6f3;
+  --on-dark:#ffffff;
+  --on-dark-mute:rgba(255,255,255,.7);
+  --surface-dark:#262622;
+  --focus-outer:#435ee5;
+  --success-deep:#103c25;
+  --success-pale:#c7f0da;
+
+  --r-sm:8px; --r-md:16px; --r-lg:32px; --r-full:9999px;
+  --sp-xxs:4px; --sp-xs:6px; --sp-sm:8px; --sp-md:12px; --sp-lg:16px; --sp-xl:24px; --sp-xxl:32px; --sp-section:64px;
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0;
+  background:var(--surface-soft);
+  color:var(--body);
+  font-family:'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  font-size:16px;
+  line-height:1.5;
+}
+img{max-width:100%; display:block;}
+a{color:inherit; text-decoration:none;}
+:focus-visible{outline:4px solid var(--focus-outer); outline-offset:2px; border-radius:var(--r-sm);}
+
+.shell{width:min(1180px, calc(100% - 40px)); margin:0 auto;}
+
+/* ---------- Nav ---------- */
+.primary-nav{
+  position:sticky; top:0; z-index:100;
+  background:var(--canvas);
+  border-bottom:1px solid var(--hairline);
+  height:64px;
+}
+.primary-nav .shell{height:64px; display:flex; align-items:center; justify-content:space-between; gap:20px;}
+.nav-logo{font-size:18px; font-weight:700; letter-spacing:-0.3px; display:flex; align-items:center; gap:8px;}
+.nav-logo .dot{width:9px; height:9px; border-radius:50%; background:var(--primary); display:inline-block;}
+.nav-links{display:flex; gap:28px; font-size:14px; font-weight:600;}
+.nav-links a{color:var(--charcoal); padding:4px 0; border-bottom:2px solid transparent;}
+.nav-links a:hover{border-color:var(--primary);}
+.nav-cta{display:flex; align-items:center; gap:10px;}
+.hamburger{display:none; background:none; border:none; cursor:pointer; padding:8px;}
+.hamburger span{display:block; width:22px; height:2px; background:var(--ink); margin:5px 0; border-radius:2px;}
+
+/* ---------- Buttons ---------- */
+.btn{
+  display:inline-flex; align-items:center; justify-content:center;
+  height:40px; padding:6px 18px; border-radius:var(--r-md);
+  font-size:14px; font-weight:700; border:none; cursor:pointer; white-space:nowrap;
+  transition:background .15s ease;
+}
+.btn-primary{background:var(--primary); color:var(--on-primary);}
+.btn-primary:hover{background:var(--primary-pressed);}
+.btn-secondary{background:var(--secondary-bg); color:var(--ink);}
+.btn-secondary:hover{background:var(--secondary-pressed);}
+.btn-row{display:flex; gap:10px; flex-wrap:wrap; align-items:center;}
+
+/* ---------- Type ---------- */
+.eyebrow{
+  font-size:12px; font-weight:700; letter-spacing:2px; text-transform:uppercase;
+  color:var(--primary); margin:0 0 14px;
+}
+.eyebrow.on-dark{color:#ff5c6e;}
+h1,h2,h3,h4{margin:0; font-weight:700; letter-spacing:-0.6px; color:var(--ink);}
+.display-xl{font-size:clamp(34px, 6vw, 62px); line-height:1.1; letter-spacing:-1.4px;}
+.heading-xl{font-size:clamp(24px, 3.4vw, 30px); line-height:1.22; letter-spacing:-0.8px;}
+.heading-lg{font-size:22px; line-height:1.28;}
+.heading-md{font-size:18px; line-height:1.3;}
+.lead{font-size:17px; line-height:1.55; color:var(--mute); max-width:680px; margin:16px 0 0;}
+.lead.on-dark{color:var(--on-dark-mute);}
+
+/* ---------- Sections ---------- */
+.section{padding:var(--sp-section) 0;}
+.section-tight{padding:40px 0;}
+.section-head{margin-bottom:36px;}
+
+.block{border-radius:var(--r-lg); padding:clamp(28px,5vw,56px); margin:0 0 24px;}
+.block-cream{background:var(--surface-card);}
+.block-dark{background:var(--surface-dark); color:var(--on-dark);}
+.block-dark h2, .block-dark h3, .block-dark h4{color:var(--on-dark);}
+.block-dark p{color:var(--on-dark-mute);}
+
+.hero{padding:64px 0 48px;}
+
+/* ---------- Grid / Cards ---------- */
+.grid{display:grid; gap:16px;}
+.grid-2{grid-template-columns:repeat(2,minmax(0,1fr));}
+.grid-3{grid-template-columns:repeat(3,minmax(0,1fr));}
+.grid-4{grid-template-columns:repeat(4,minmax(0,1fr));}
+
+.feature-card{background:var(--canvas); border-radius:var(--r-md); padding:28px;}
+.feature-card-soft{background:var(--surface-card); border-radius:var(--r-md); padding:28px;}
+.feature-card h3, .feature-card-soft h3{font-size:18px; margin-bottom:8px;}
+.feature-card p, .feature-card-soft p{font-size:14px; color:var(--mute); line-height:1.55; margin:0;}
+
+/* pin-card image frame */
+.pin-card{background:var(--surface-card); border-radius:var(--r-md); overflow:hidden;}
+.pin-card-large{background:var(--surface-card); border-radius:var(--r-lg); overflow:hidden; padding:8px;}
+.pin-card-large img{border-radius:calc(var(--r-lg) - 8px);}
+
+/* pills */
+.pill{
+  display:inline-flex; align-items:center; gap:6px;
+  background:var(--canvas); color:var(--ink);
+  border-radius:var(--r-full); padding:8px 16px;
+  font-size:13px; font-weight:700;
+}
+.pill-board{display:flex; flex-wrap:wrap; gap:10px; margin-top:24px;}
+.tag{
+  display:inline-block; background:var(--surface-card); color:var(--charcoal);
+  border-radius:var(--r-full); padding:5px 12px; font-size:12px; font-weight:600;
+  border:1px solid var(--hairline);
+}
+.tag-row{display:flex; flex-wrap:wrap; gap:6px; margin:10px 0 0;}
+
+/* stat row */
+.stat-row{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:12px; margin-top:28px;}
+.stat{background:var(--canvas); border-radius:var(--r-md); padding:18px; text-align:center;}
+.stat .num{font-size:26px; font-weight:700; color:var(--primary); letter-spacing:-0.6px;}
+.stat .label{font-size:12px; color:var(--mute); margin-top:4px; font-weight:600;}
+
+/* filter chips (tabs) */
+.chip-row{display:flex; flex-wrap:wrap; gap:10px; margin-bottom:28px;}
+.chip{
+  background:var(--surface-card); color:var(--ink); border:none; cursor:pointer;
+  border-radius:var(--r-full); padding:10px 18px; font-size:13px; font-weight:700;
+  font-family:inherit;
+}
+.chip.active{background:var(--ink); color:var(--on-dark);}
+
+.tab-panel{display:none;}
+.tab-panel.active{display:block;}
+
+/* sub content styling inside project detail */
+.detail-block{margin-bottom:28px;}
+.detail-block h4{font-size:15px; text-transform:uppercase; letter-spacing:1px; color:var(--primary); margin-bottom:12px;}
+.detail-block p{font-size:14.5px; line-height:1.7; color:var(--body); margin:0 0 10px;}
+
+.table-wrap{overflow-x:auto; border-radius:var(--r-md); border:1px solid var(--hairline);}
+table{border-collapse:collapse; width:100%; font-size:13.5px; background:var(--canvas);}
+th,td{padding:10px 14px; text-align:left; border-bottom:1px solid var(--hairline-soft); vertical-align:top;}
+th{background:var(--surface-card); font-weight:700; color:var(--ink);}
+tr:last-child td{border-bottom:none;}
+
+pre, .code{
+  background:var(--surface-dark); color:#f2f0ea;
+  border-radius:var(--r-md); padding:16px 18px; overflow-x:auto;
+  font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size:12.5px; line-height:1.6; margin:0 0 12px;
+}
+
+.flow{
+  background:var(--surface-card); border-radius:var(--r-md); padding:16px 18px;
+  font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size:12.5px; line-height:1.9; color:var(--charcoal); white-space:pre-wrap; margin:0 0 12px;
+}
+
+/* accordion (troubleshooting) */
+.acc{background:var(--charcoal); border-radius:var(--r-md); margin-bottom:14px; overflow:hidden;}
+.acc summary{
+  list-style:none; cursor:pointer; padding:20px 24px; display:flex; align-items:center; justify-content:space-between;
+  font-weight:700; font-size:15px; color:var(--on-dark); gap:16px;
+}
+.acc summary::-webkit-details-marker{display:none;}
+.acc summary .plus{font-size:20px; font-weight:400; color:#ff5c6e; flex-shrink:0;}
+.acc[open] summary .plus{transform:rotate(45deg);}
+.acc .acc-meta{font-size:12px; color:var(--on-dark-mute); font-weight:500; margin-top:4px;}
+.acc-body{padding:0 24px 24px; color:var(--on-dark-mute); font-size:14px; line-height:1.7;}
+.acc-body h5{color:var(--on-dark); font-size:13px; text-transform:uppercase; letter-spacing:1px; margin:18px 0 8px; opacity:.9;}
+.acc-body h5:first-child{margin-top:0;}
+.acc-body .code{background:#151412;}
+.acc-body table{background:#2e2c28; color:var(--on-dark-mute);}
+.acc-body th{background:#3a3733; color:var(--on-dark);}
+.acc-body th,.acc-body td{border-color:#403d38;}
+
+.security-note{
+  font-size:12px; color:var(--ash); letter-spacing:.4px; margin-top:10px;
+}
+
+.marquee-wrap{overflow:hidden; background:var(--ink); padding:12px 0;}
+.marquee{display:flex; white-space:nowrap; animation:scroll 32s linear infinite;}
+.marquee span{padding:0 28px; font-size:13px; font-weight:700; letter-spacing:1.5px; color:var(--on-dark); text-transform:uppercase;}
+@keyframes scroll{from{transform:translateX(0);} to{transform:translateX(-50%);}}
+
+.footer{
+  background:var(--canvas); border-top:1px solid var(--hairline);
+  padding:40px 0 28px; margin-top:16px;
+}
+.footer .shell{display:flex; flex-direction:column; gap:6px;}
+.footer .brand{font-weight:700; color:var(--primary); font-size:14px;}
+.footer .muted{color:var(--mute); font-size:13px;}
+
+.role-list{margin:14px 0 0; padding-left:0; list-style:none; display:flex; flex-direction:column; gap:8px;}
+.role-list li{font-size:14px; color:var(--body); padding-left:20px; position:relative;}
+.role-list li::before{content:"•"; color:var(--primary); position:absolute; left:0; font-weight:700;}
+
+.role-badge{display:inline-block; font-size:11px; font-weight:700; padding:4px 10px; border-radius:var(--r-full); background:var(--primary); color:#fff; margin-bottom:10px;}
+.role-badge.secondary{background:var(--secondary-bg); color:var(--ink);}
+
+@media (max-width:900px){
+  .nav-links{display:none;}
+  .hamburger{display:block;}
+  .grid-3, .grid-4, .grid-2{grid-template-columns:1fr;}
+  .stat-row{grid-template-columns:repeat(2,minmax(0,1fr));}
+  .block{border-radius:var(--r-md);}
+}
+@media (max-width:540px){
+  .btn{width:100%;}
+  .btn-row{flex-direction:column; align-items:stretch;}
+}
+</style>
+</head>
+<body>
+
+<nav class="primary-nav">
+  <div class="shell">
+    <div class="nav-logo"><span class="dot"></span>박수현 · Cloud Engineer</div>
+    <div class="nav-links">
+      <a href="#skills">Skills</a>
+      <a href="#competency">Core Competency</a>
+      <a href="#projects">Projects</a>
+      <a href="#troubleshooting">Troubleshooting</a>
+      <a href="#career">Career</a>
+    </div>
+    <div class="nav-cta">
+      <a class="btn btn-primary" href="https://github.com/cloud-sue" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</nav>
+
+<div class="marquee-wrap">
+  <div class="marquee">
+    <span>AZURE</span><span>AWS</span><span>KUBERNETES</span><span>TERRAFORM</span><span>GITHUB ACTIONS</span><span>ARGOCD</span><span>REDIS</span><span>MYSQL</span><span>DEVOPS</span>
+    <span>AZURE</span><span>AWS</span><span>KUBERNETES</span><span>TERRAFORM</span><span>GITHUB ACTIONS</span><span>ARGOCD</span><span>REDIS</span><span>MYSQL</span><span>DEVOPS</span>
+  </div>
+</div>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero shell">
+    <div class="eyebrow">CLOUD ENGINEER / DEVOPS PORTFOLIO</div>
+    <h1 class="display-xl">Application을 이해하는<br>Cloud Engineer</h1>
+    <p class="lead">Java/Spring 기반 웹 개발 교육과 프로젝트 운영 경험을 바탕으로, Kubernetes · Terraform · CI/CD · Multi-Cloud DR 환경을 설계하고 운영하는 클라우드 엔지니어 박수현입니다.</p>
+    <div class="btn-row" style="margin-top:28px;">
+      <a class="btn btn-primary" href="#main-project">대표 프로젝트 보기</a>
+      <a class="btn btn-secondary" href="https://github.com/cloud-sue" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="shell section-tight" id="skills">
+    <div class="block block-cream">
+      <div class="eyebrow">SKILL BOARD</div>
+      <h2 class="heading-xl">기술을 나열하지 않고,<br>운영 경험으로 증명합니다.</h2>
+      <p class="lead">클라우드, 컨테이너, IaC, CI/CD, DB/Cache, 모니터링, 백엔드 이해를 하나의 운영 흐름으로 연결했습니다.</p>
+      <div class="pill-board">
+        <span class="pill">Azure</span>
+        <span class="pill">AWS</span>
+        <span class="pill">Docker</span>
+        <span class="pill">Kubernetes</span>
+        <span class="pill">Terraform</span>
+        <span class="pill">GitHub Actions</span>
+        <span class="pill">ArgoCD</span>
+        <span class="pill">Java</span>
+        <span class="pill">Spring Boot</span>
+        <span class="pill">MySQL</span>
+        <span class="pill">Redis</span>
+        <span class="pill">Grafana</span>
+        <span class="pill">WhaTap</span>
+        <span class="pill">Linux</span>
+        <span class="pill">Git</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CORE COMPETENCY -->
+  <section class="shell section-tight" id="competency">
+    <div class="section-head">
+      <div class="eyebrow">CORE COMPETENCY</div>
+      <h2 class="heading-xl">Core Competency</h2>
+    </div>
+    <div class="grid grid-3">
+      <div class="feature-card-soft">
+        <h3>Cloud Architecture</h3>
+        <p>Azure/AWS 기반 3-Tier, 고가용성, 멀티클라우드 DR 아키텍처 설계 및 구현</p>
+      </div>
+      <div class="feature-card-soft">
+        <h3>Kubernetes Operation</h3>
+        <p>AKS/EKS 환경에서 Web/WAS 컨테이너 배포, Service, Ingress, Probe, HPA 구성</p>
+      </div>
+      <div class="feature-card-soft">
+        <h3>IaC & Automation</h3>
+        <p>Terraform 모듈화, Remote State, GitHub Actions, ArgoCD 기반 자동화 경험</p>
+      </div>
+      <div class="feature-card-soft">
+        <h3>Troubleshooting</h3>
+        <p>DB Failover, Redis Session, Secret 주입, 배포/인증 오류 원인 분석 및 해결</p>
+      </div>
+      <div class="feature-card-soft">
+        <h3>Application Understanding</h3>
+        <p>Java/Spring, DB, WAS, 배포 흐름 이해를 기반으로 인프라-워크로드 문제 연결</p>
+      </div>
+      <div class="feature-card-soft">
+        <h3>Documentation</h3>
+        <p>설계 이유, 장애 원인, 해결 과정, 회고를 문서화하여 설명 가능한 포트폴리오 구성</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- MAIN PROJECT -->
+  <section class="shell section-tight" id="main-project">
+    <div class="block block-cream">
+      <div class="eyebrow">MAIN PROJECT</div>
+      <h2 class="heading-xl">Multi-Cloud DR 기반<br>K-Beauty Commerce Platform</h2>
+      <p class="lead">Azure를 메인 운영 환경으로, AWS를 보조 DR 환경으로 구성한 멀티클라우드 커머스 서비스 운영 프로젝트입니다. 단일 클라우드 장애점(SPOF)을 해소하고 IaC·CI/CD로 자동화하는 DevOps 환경을 구축했습니다.</p>
+
+      <div class="pin-card-large" style="margin-top:28px;">
+        <img src="./images/architecture.png" alt="Multi-Cloud DR 전체 아키텍처">
+      </div>
+
+      <div class="stat-row">
+        <div class="stat"><div class="num">33분</div><div class="label">평균 RTO (목표 대비 -45%)</div></div>
+        <div class="stat"><div class="num">0분</div><div class="label">RPO (DMS CDC 실시간 복제)</div></div>
+        <div class="stat"><div class="num">4/5</div><div class="label">DR 훈련 목표 달성</div></div>
+        <div class="stat"><div class="num">11개</div><div class="label">Terraform 모듈</div></div>
+      </div>
+
+      <div class="grid grid-2" style="margin-top:28px;">
+        <div class="feature-card">
+          <h3>My Role</h3>
+          <ul class="role-list">
+            <li>K-Beauty 홈페이지 설계 및 구현</li>
+            <li>Terraform 기반 Azure 인프라 구현</li>
+            <li>Kubernetes Blue/Green + Canary 배포 구성</li>
+            <li>Redis 기반 세션 외부화 적용</li>
+            <li>GitHub Actions + ArgoCD 기반 CI/CD 구성</li>
+            <li>HTTPS 인증서 적용 및 만료 알림 구현</li>
+          </ul>
+        </div>
+        <div class="feature-card">
+          <h3>Why this project matters</h3>
+          <p style="font-size:14px; color:var(--mute); line-height:1.65;">단일 클라우드 장애 시 서비스 전체가 중단되는 문제를 줄이기 위해 Azure-AWS 이중 구조를 설계했습니다. Terraform, Kubernetes, CI/CD, Redis, HTTPS를 개별 기술이 아니라 <strong style="color:var(--ink)">운영 흐름</strong>으로 연결한 것이 핵심입니다.</p>
+        </div>
+      </div>
+
+      <div class="btn-row" style="margin-top:28px;">
+        <a class="btn btn-primary" href="https://github.com/cloud-sue/pj3_team_kbeauty_dr-azure-.git" target="_blank" rel="noopener">Azure Repo</a>
+        <a class="btn btn-secondary" href="https://github.com/cloud-sue/pj3_team_kbeauty_dr-aws-.git" target="_blank" rel="noopener">AWS Repo</a>
+        <a class="btn btn-secondary" href="#troubleshooting">Troubleshooting 보기</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="shell section" id="projects">
+    <div class="section-head">
+      <div class="eyebrow">PROJECTS</div>
+      <h2 class="heading-xl">기술을 증명하는 세 개의 프로젝트</h2>
+      <p class="lead">각 프로젝트를 선택해 아키텍처, 핵심 구현, 결과를 확인해보세요.</p>
+    </div>
+
+    <div class="chip-row" role="tablist">
+      <button class="chip active" data-tab="pj3" onclick="switchTab('pj3', this)">Project 01 · Team — Multi-Cloud DR</button>
+      <button class="chip" data-tab="pj2" onclick="switchTab('pj2', this)">Project 02 · Personal — AWS EKS 3-Tier</button>
+      <button class="chip" data-tab="pj1" onclick="switchTab('pj1', this)">Project 03 · Team — Azure HA Infra</button>
+    </div>
+
+    <!-- PJ3 -->
+    <div class="tab-panel active" id="tab-pj3">
+      <div class="feature-card">
+        <span class="role-badge">Team · 3인</span>
+        <h3 class="heading-lg" style="margin-bottom:6px;">멀티클라우드 DR 기반 K-뷰티 커머스 플랫폼 서비스 운영</h3>
+        <p style="font-size:14px; color:var(--mute);">2026.06.01 ~ 2026.07.01 (4주) · 팀명: Azuresis (애저시스터즈) · 멘토: 전*진 (Bespin Global)</p>
+
+        <div class="detail-block" style="margin-top:20px;">
+          <h4>Overview</h4>
+          <p>Azure를 메인 운영 환경으로, AWS를 보조 DR 환경으로 구성한 멀티클라우드 기반 K-뷰티 커머스 서비스입니다. 단일 클라우드의 장애점으로 인한 서비스 전체 중단 리스크를 해소하기 위해 IaC로 인프라를 코드화하고 CI/CD로 빌드·배포를 자동화했으며, Pilot Light DR 전략으로 비용과 복구 속도의 균형을 맞췄습니다.</p>
+          <div class="flow">트래픽: Client → Azure DNS → Traffic Manager → App Gateway(AGIC) → AKS(WEB→WAS) → Azure DB for MySQL
+DR:    장애 감지 → Traffic Manager Failover → CloudFront/S3 → EKS 배포 → RDS(DMS CDC 복제)</div>
+        </div>
+
+        <div class="detail-block">
+          <h4>Tech Stack</h4>
+          <div class="tag-row">
+            <span class="tag">Azure AKS</span><span class="tag">App Gateway (AGIC)</span><span class="tag">Azure DB for MySQL</span>
+            <span class="tag">AWS EKS</span><span class="tag">CloudFront</span><span class="tag">RDS</span><span class="tag">AWS DMS</span>
+            <span class="tag">Terraform</span><span class="tag">Docker</span><span class="tag">ACR / ECR</span>
+            <span class="tag">GitHub Actions</span><span class="tag">ArgoCD</span><span class="tag">NGINX</span><span class="tag">Redis</span>
+            <span class="tag">Key Vault</span><span class="tag">External Secrets</span><span class="tag">Let's Encrypt</span>
+            <span class="tag">WhaTap</span><span class="tag">Slack</span><span class="tag">OpsNow</span>
+          </div>
+        </div>
+
+        <div class="pin-card-large" style="margin:20px 0;">
+          <img src="./images/pj3_multicloud-dr-architecture.png" alt="멀티클라우드 DR 아키텍처">
+        </div>
+
+        <div class="detail-block">
+          <h4>구성 요소</h4>
+          <div class="table-wrap">
+            <table>
+              <tr><th>계층</th><th>Azure (Main)</th><th>AWS (DR)</th></tr>
+              <tr><td>진입/DNS</td><td>Azure DNS · Traffic Manager</td><td>CloudFront (Failover) → S3</td></tr>
+              <tr><td>L7 라우팅</td><td>Application Gateway (WAF · AGIC)</td><td>ALB Ingress</td></tr>
+              <tr><td>WEB/WAS</td><td>AKS (Blue/Green)</td><td>EKS Cluster</td></tr>
+              <tr><td>데이터</td><td>Azure Database for MySQL</td><td>Amazon RDS MySQL (DR Target)</td></tr>
+              <tr><td>세션/보안</td><td>Redis · Key Vault · ACR</td><td>ECR (DR)</td></tr>
+              <tr><td>연결</td><td colspan="2">VPN (Private) · DMS CDC 복제</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="detail-block">
+          <h4>핵심 구현</h4>
+          <p><strong>1. Terraform 인프라(IaC)</strong> — 역할별 11개 모듈(network·aks·acr·agw·db·redis·keyvault·rbac·traffic_manager·dns·vpn)로 책임 분리. tfstate는 Azure Blob Storage 백엔드에 환경별 경로 분리 저장, 민감정보는 <code>.env</code>(TF_VAR_*)로 분리 후 GitHub Secrets로 주입.</p>
+          <pre class="code">module "agw" {
+  source     = "./modules/azure/agw"
+  subnet_id  = module.network.appgw_subnet_id
+  depends_on = [module.network]
+}
+
+backend "azurerm" {
+  resource_group_name  = "rg-azsis-kbeauty-blob"
+  storage_account_name = "azsiskbeautytfstate"
+  container_name       = "tfstate"
+  key                  = "dev/terraform.tfstate"
+}</pre>
+          <p><strong>2. Kubernetes Blue/Green + Canary 무중단 배포</strong> — Service selector를 blue↔green으로 전환하는 방식으로 다운타임 0 유지. AGIC가 가중치 라우팅을 지원하지 않아 <code>/canary</code> 경로 기반 라우팅으로 신버전 검증. readiness/liveness Probe와 HPA(CPU 60% 기준 2~20 replicas)로 자가 치유 구성.</p>
+          <p><strong>3. Redis 세션 외부화</strong> — HttpSession을 Redis로 분리해 Pod가 바뀌어도 로그인 세션 유지. <code>/api/auth/me</code> 12회 반복 호출 검증에서 로컬 세션(blue)은 일부만 성공, Redis 세션(green)은 12회 모두 동일 JSESSIONID로 성공. Redis 접속 정보는 External Secrets Operator로 Key Vault에서 자동 동기화.</p>
+          <p><strong>4. CI/CD 자동화</strong> — PR 시 quality-gate(format·validate·lint·security scan) + blue/green 매트릭스 빌드 테스트, merge 시 OIDC 키리스 인증으로 apply 후 ArgoCD가 GitOps 이미지 태그 변경을 감지해 자동 동기화.</p>
+          <p><strong>5. HTTPS 인증서 자동화</strong> — Let's Encrypt를 DNS-01 방식으로 자동 발급 → Key Vault → App Gateway 443 바인딩. 만료 30일 전 Slack 알람과 자동 재발급으로 만료 사고 방지.</p>
+        </div>
+
+        <div class="detail-block">
+          <h4>DR 전략 — Pilot Light</h4>
+          <p>데이터는 상시(RDS 복제), 컴퓨팅은 온디맨드로 두어 RTO와 비용의 균형을 맞췄습니다.</p>
+          <div class="table-wrap">
+            <table>
+              <tr><th>전략</th><th>컴퓨팅</th><th>비용</th><th>RTO</th></tr>
+              <tr><td>Backup & Restore</td><td>없음 (cold)</td><td>최저</td><td>수 시간</td></tr>
+              <tr><td><strong>Pilot Light ✅</strong></td><td>데이터(RDS)만 상시</td><td>중간</td><td>실측 33분</td></tr>
+              <tr><td>Warm Standby</td><td>최소사양 상시</td><td>높음</td><td>수 분</td></tr>
+              <tr><td>Active-Active</td><td>전부 상시</td><td>최고(2배)</td><td>거의 0</td></tr>
+            </table>
+          </div>
+          <p style="margin-top:12px;">장애 감지는 <strong>자동 감지 → 수동 판정 → 수동 트리거</strong> 흐름으로 오발동을 방지합니다: EventBridge가 1분 주기로 Azure AGW 헬스체크 → CloudWatch Alarm → Slack 알림 → 담당자가 curl/kubectl/WhaTap으로 직접 검증 → <code>terraform apply</code>로 DR 트리거. 감지 임계값은 15분입니다.</p>
+        </div>
+
+        <div class="detail-block">
+          <h4>RTO / RPO 테스트 결과</h4>
+          <p>총 5회 훈련 · 목표 달성 4/5회 · 최단 RTO 30분(5회차)</p>
+          <div class="table-wrap">
+            <table>
+              <tr><th>회차</th><th>일자</th><th>RTO 목표</th><th>RTO 실측</th><th>RPO 실측</th><th>달성</th></tr>
+              <tr><td>1</td><td>06-19</td><td>10분</td><td>3분</td><td>0</td><td>✅</td></tr>
+              <tr><td>1</td><td>06-19</td><td>60분</td><td>40분</td><td>약 5초</td><td>✅</td></tr>
+              <tr><td>2</td><td>06-23</td><td>60분</td><td>120분</td><td>약 5초</td><td>❌ (Pod 이미지 빌드 오류)</td></tr>
+              <tr><td>3</td><td>06-23</td><td>60분</td><td>31분</td><td>약 5초</td><td>✅</td></tr>
+              <tr><td>4</td><td>06-24</td><td>60분</td><td>35분</td><td>약 5초</td><td>✅</td></tr>
+              <tr><td>5</td><td>06-25</td><td>60분</td><td>30분</td><td>약 5초</td><td>✅</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="detail-block">
+          <h4>향후 개선 방안</h4>
+          <div class="table-wrap">
+            <table>
+              <tr><th>구분</th><th>현재</th><th>개선안</th></tr>
+              <tr><td>자동화</td><td>Azure 중심 CI/CD 자동화</td><td>AWS까지 CI/CD 자동화 확장</td></tr>
+              <tr><td>DR 훈련</td><td>프로젝트 기간 내 5회 훈련</td><td>분기별 장애 주입 테스트로 지속 검증</td></tr>
+              <tr><td>비용 최적화</td><td>Pilot Light 기본 구성</td><td>OpsNow 분석 기반 자원 규모 재조정</td></tr>
+              <tr><td>성공률 지표</td><td>트랜잭션 에러 기준 산출</td><td>Access Log 기반 2xx/4xx/5xx 비율 분석</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="btn-row">
+          <a class="btn btn-primary" href="https://github.com/cloud-sue/pj3_team_kbeauty_dr-azure-.git" target="_blank" rel="noopener">Azure Repo</a>
+          <a class="btn btn-secondary" href="https://github.com/cloud-sue/pj3_team_kbeauty_dr-aws-.git" target="_blank" rel="noopener">AWS Repo</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- PJ2 -->
+    <div class="tab-panel" id="tab-pj2">
+      <div class="feature-card">
+        <span class="role-badge secondary">Personal</span>
+        <h3 class="heading-lg" style="margin-bottom:6px;">AWS EKS 활용하여 컨테이너 기반의 3-Tier 서비스 운영</h3>
+        <p style="font-size:14px; color:var(--mute);">쿠버네티스 관리형 서비스(EKS) 기반 컨테이너 3-Tier 웹 서비스 운영 (개인 프로젝트)</p>
+
+        <div class="detail-block" style="margin-top:20px;">
+          <h4>Overview</h4>
+          <p>Spring PetClinic 애플리케이션을 컨테이너 기반 3-Tier(WEB/WAS/DB) 구조로 AWS EKS 위에 배포·운영한 개인 프로젝트입니다. 멀티 스테이지 Dockerfile로 이미지를 경량화하고, ECR·Secret·Ingress를 활용해 실서비스에 가까운 컨테이너 운영 환경을 직접 구성했습니다.</p>
+          <div class="flow">트래픽: Client → NLB → ingress-nginx (L7) → web-svc(Nginx) → was-svc(Tomcat) → RDS(MySQL)</div>
+        </div>
+
+        <div class="detail-block">
+          <h4>Tech Stack</h4>
+          <div class="tag-row">
+            <span class="tag">Amazon EKS 1.35</span><span class="tag">Amazon ECR</span><span class="tag">Amazon RDS</span><span class="tag">Amazon VPC</span>
+            <span class="tag">Docker</span><span class="tag">Docker Compose</span><span class="tag">Kubernetes</span><span class="tag">Helm</span>
+            <span class="tag">NGINX</span><span class="tag">Tomcat 9.0</span><span class="tag">Spring</span><span class="tag">MySQL 8.4</span>
+          </div>
+        </div>
+
+        <div class="pin-card-large" style="margin:20px 0;">
+          <img src="./images/pj2_aws-eks-architecture.png" alt="AWS EKS 3-Tier 아키텍처">
+        </div>
+        <p style="font-size:13.5px; color:var(--mute); margin-top:-8px;">Multi-AZ(ap-northeast-2a / 2c) 구성으로 Public/Private Subnet을 분리하고, EKS 클러스터 내 WEB·WAS Pod를 배치, DB는 Private Subnet의 RDS(MySQL)로 격리한 3-Tier 구조</p>
+
+        <div class="detail-block">
+          <h4>핵심 구현</h4>
+          <p><strong>1. 컨테이너 이미지 경량화</strong> — WAS는 <code>maven:3.9-eclipse-temurin-17</code>로 WAR 빌드 후 <code>rockylinux:9</code> 런타임에 산출물만 복사, WEB은 <code>alpine:3.19</code>에서 clone 후 <code>nginx:1.25-alpine</code>로 서빙하는 멀티 스테이지 빌드로 용량·공격 표면을 축소했습니다. EKS 배포 전 Docker Compose로 로컬에서 사전 검증했습니다.</p>
+          <p><strong>2. 프라이빗 ECR 운영</strong> — 두 개의 프라이빗 레포로 이미지를 관리하고 IAM 기반 인증으로 EKS와 연동했습니다.</p>
+          <p><strong>3. EKS Cluster Access Management</strong> — 기존 aws-auth ConfigMap 방식의 락아웃 리스크를 개선해 EKS Access Entry API로 IAM 역할 기반 접근 제어를 구성했습니다.</p>
+          <p><strong>4. Secret 기반 DB 정보 보안</strong> — DB 접속 정보를 Kubernetes Secret으로 분리하고 <code>secretKeyRef</code>로 환경변수 주입했습니다.</p>
+          <p><strong>5. Ingress 기반 L7 라우팅</strong> — ingress-nginx + AWS NLB 조합으로 경로 기반 라우팅(<code>/</code> → WEB, <code>/petclinic</code> → WAS) 구성, liveness/readinessProbe로 Pod 상태를 관리했습니다.</p>
+        </div>
+
+        <div class="detail-block">
+          <h4>향후 개선 방안</h4>
+          <div class="table-wrap">
+            <table>
+              <tr><th>구분</th><th>현재</th><th>개선안</th></tr>
+              <tr><td>로드밸런싱</td><td>NLB → ingress-nginx → 라우팅</td><td>AWS Load Balancer Controller로 ALB 직접 사용</td></tr>
+              <tr><td>IaC</td><td>콘솔 기본 설정</td><td>CloudFormation · eksctl로 자동화</td></tr>
+              <tr><td>스토리지</td><td>RDS 연결만 진행</td><td>Persistent Volume 활용</td></tr>
+            </table>
+          </div>
+        </div>
+
+        <div class="btn-row">
+          <a class="btn btn-primary" href="https://github.com/cloud-sue/petclinic_web" target="_blank" rel="noopener">Frontend Repo</a>
+          <a class="btn btn-secondary" href="https://github.com/cloud-sue/petclinic_pj_middle" target="_blank" rel="noopener">Backend Repo</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- PJ1 -->
+    <div class="tab-panel" id="tab-pj1">
+      <div class="feature-card">
+        <span class="role-badge">Team</span>
+        <h3 class="heading-lg" style="margin-bottom:6px;">Azure 기반 고가용성 3-Tier 웹 서비스 인프라 구축</h3>
+        <p style="font-size:14px; color:var(--mute);">[베스핀글로벌] 멀티클라우드 취업실무과정 — Azure 1팀 · 2025.03.30 ~ 2025.04.10 (2주)</p>
+
+        <div class="detail-block" style="margin-top:20px;">
+          <h4>Overview</h4>
+          <p>전국 20여 개 지점을 운영하는 대형 동물병원 예약/조회 플랫폼(PetClinic)을 대상으로, 매월 초 정기 검진 할인 이벤트 시 접속자가 3배 급증하는 트래픽을 무중단으로 처리하는 엔터프라이즈급 3-Tier 인프라를 Azure 기반으로 구축했습니다.</p>
+          <div class="flow">트래픽: Client → DNS → Public AGW → Web VMSS → Internal AGW → WAS VMSS → Azure MySQL</div>
+        </div>
+
+        <div class="detail-block">
+          <h4>Tech Stack</h4>
+          <div class="tag-row">
+            <span class="tag">Microsoft Azure</span><span class="tag">VMSS</span><span class="tag">Application Gateway</span><span class="tag">Traffic Manager</span>
+            <span class="tag">Rocky Linux</span><span class="tag">Java</span><span class="tag">Spring</span><span class="tag">Apache Tomcat 9.0</span>
+            <span class="tag">Azure DB for MySQL</span><span class="tag">Grafana</span><span class="tag">Slack</span><span class="tag">nGrinder</span>
+          </div>
+        </div>
+
+        <div class="pin-card-large" style="margin:20px 0;">
+          <img src="./images/pj1_azure-ha-architecture.png" alt="Azure 고가용성 3-Tier 아키텍처">
+        </div>
+
+        <div class="detail-block">
+          <h4>My Part — WAS 계층 전담</h4>
+          <p>Internal Application Gateway 설정(L7 경로 라우팅 + Health Check), WAS VMSS 구현(Auto Scaling Min 2 / Max 20 + Pre-warm 정책), Tomcat 9.0 서버 구축(Systemd 등록·골든 이미지 제작), PetClinic 코드 리팩토링(환경변수 기반 Azure MySQL 접속 정보 주입), Grafana·Slack 모니터링 및 nGrinder 부하테스트(TPS 3배 향상 검증)를 담당했습니다.</p>
+        </div>
+
+        <div class="detail-block">
+          <h4>고가용성(HA) 전략</h4>
+          <p>Web/WAS/DB 모두 Zone 분산 배치(Web·WAS: Zone 1,2 / DB: Zone 1,3). WEB은 Min 2/Max 10, WAS는 Min 2/Max 20 기준 CPU 60%↑ 확장, 30%↓ 축소하는 Auto Scaling을 적용했고, 매월 1일 이벤트 대비 오전 8시 사전 확장(Pre-warm)을 구성했습니다. 강제 Failover 테스트 시 약 30초 내 보조 영역(Zone 3) 전환, 복제 지연 0초를 유지했습니다.</p>
+        </div>
+
+        <div class="detail-block">
+          <h4>부하 테스트 결과 (nGrinder)</h4>
+          <div class="table-wrap">
+            <table>
+              <tr><th>구성</th><th>Vuser</th><th>평균 TPS</th><th>평균 응답시간</th><th>비고</th></tr>
+              <tr><td>단일 VM (WAS)</td><td>300명</td><td>181.8</td><td>1,619.01 ms</td><td>CPU 96~98% 병목 → Scale-out 필요</td></tr>
+              <tr><td>VMSS (Auto-Scaling)</td><td>500명</td><td>549.5</td><td>883.48 ms</td><td>TPS 약 3배 향상, 응답시간 45% 단축</td></tr>
+            </table>
+          </div>
+          <p style="margin-top:12px;">단일 VM 환경의 물리적 한계를 VMSS Auto-Scaling으로 해소, 성능 3배 향상 및 응답시간 45% 단축을 검증했습니다.</p>
+        </div>
+
+        <div class="detail-block">
+          <h4>향후 개선 방안</h4>
+          <p>HTTPS 보안 적용, WAF 도입, Azure Key Vault 활용 등 보안 고도화와, 글로벌 CDN 적용, DR 시스템 고도화, Read-Replica 기반 DB 읽기 성능 개선, 자동 장애 복구 스크립트 도입을 계획했습니다.</p>
+        </div>
+
+        <div class="btn-row">
+          <a class="btn btn-primary" href="https://github.com/cloud-sue/pj1_team_petclinic_was.git" target="_blank" rel="noopener">WAS Repo</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TROUBLESHOOTING -->
+  <section class="shell section" id="troubleshooting">
+    <div class="block block-dark">
+      <div class="eyebrow on-dark">TROUBLESHOOTING</div>
+      <h2 class="heading-xl">장애를 숨기지 않고,<br>원인과 해결 과정을 설명합니다.</h2>
+      <p class="lead on-dark" style="margin-bottom:32px;">증상 → 원인 → 진단 → 조치 → 재발 방지까지, 실제로 추적한 기록입니다.</p>
+
+      <details class="acc">
+        <summary><span>Redis 세션 외부화 — 세션 유지 실패부터 502·OOMKilled까지<div class="acc-meta">Multi-Cloud DR · AKS · Spring Session · Redis</div></span><span class="plus">+</span></summary>
+        <div class="acc-body">
+          <h5>문제 1. Green WAS 세션 유지 실패</h5>
+          <p><strong>증상</strong> — <code>/canary</code>에서 로그인 후 세션 확인 시 같은 JSESSIONID인데도 일부 요청만 성공(8/12).</p>
+          <p><strong>원인</strong> — WAS Pod마다 세션을 로컬 메모리에 저장하고 있어, 요청이 다른 Pod로 라우팅되면 세션 정보가 없었습니다.</p>
+          <p><strong>해결</strong> — was-green에 Spring Session Redis를 적용, Azure Managed Redis를 세션 저장소로 사용해 모든 Pod가 같은 namespace를 공유하도록 구성했습니다.</p>
+          <div class="code">spring.session.store-type=redis
+spring.session.redis.namespace=kbeauty:session
+spring.data.redis.ssl.enabled=true</div>
+
+          <h5>문제 2. Redis 연결 후 로그인 502</h5>
+          <p><strong>증상</strong> — <code>/canary/api/auth/login</code> 요청 시 502 Bad Gateway, Redis 연결 타임아웃 로그 확인.</p>
+          <p><strong>원인</strong> — Managed Redis hostname이 Private DNS Zone 미설정으로 public IP로 해석되었고, NSG는 기존 포트(6379) 기준으로만 열려 있어 실제 포트(10000)를 막고 있었습니다.</p>
+          <p><strong>해결</strong> — Private DNS A record 추가 + NSG 포트를 10000으로 변경.</p>
+          <div class="code">private_dns_zone_name = "$&#123;var.location&#125;.redis.azure.net"
+
+resource "azurerm_private_dns_a_record" "redis" {
+  name    = local.redis_config.name
+  records = [azurerm_private_endpoint.redis.private_service_connection[0].private_ip_address]
+}</div>
+
+          <h5>문제 3. Green Pod OOMKilled / 세션 확인 간헐 실패</h5>
+          <p><strong>증상</strong> — Green이 Blue보다 느리고, upstream connection refused 및 OOMKilled(Exit Code 137) 발생.</p>
+          <p><strong>원인</strong> — was-green의 리소스 request/limit이 was-blue보다 낮게 설정되어 있었고, readinessProbe가 없어 준비되지 않은 Pod가 트래픽을 받고 있었습니다.</p>
+          <p><strong>해결</strong> — 리소스를 was-blue 수준으로 상향하고, <code>/api/healthz</code> 기반 startupProbe·readinessProbe를 추가했습니다.</p>
+
+          <h5>배운 점</h5>
+          <p>세션 유지 문제는 애플리케이션(Spring Session)만이 아니라 네트워크(Private DNS·NSG)와 워크로드 리소스(Probe·requests/limits)까지 함께 봐야 완결됩니다. 같은 증상이라도 원인은 계층마다 달랐고, 계층을 분리해야 진짜 원인에 도달할 수 있었습니다.</p>
+        </div>
+      </details>
+
+      <details class="acc">
+        <summary><span>HTTPS 접속 실패 — App Gateway ↔ Key Vault 인증서 버전 참조 불일치<div class="acc-meta">Multi-Cloud DR · App Gateway · Key Vault · Terraform</div></span><span class="plus">+</span></summary>
+        <div class="acc-body">
+          <h5>증상</h5>
+          <p><code>https://www.sue019522.shop/</code> 접속 실패. TLS handshake 단계에서 실패(<code>SEC_E_ILLEGAL_MESSAGE</code>, <code>tlsv1 unrecognized name</code>). HTTP는 정상 302 리다이렉트 — 라우팅은 정상, TLS 계층만 문제였습니다.</p>
+
+          <h5>원인</h5>
+          <p>인증서 재발급 과정에서 Key Vault에는 새 secret version이 생성되었지만 App Gateway 업데이트가 중간에 실패해, App Gateway가 이미 삭제된 이전 secret version을 계속 참조하고 있었습니다.</p>
+          <div class="flow">Terraform/GitHub Actions가 새 인증서 버전 생성
+→ 이전 버전 삭제 → App Gateway 업데이트 중간 실패
+→ App Gateway는 여전히 삭제된 버전 참조 → TLS handshake 실패</div>
+
+          <h5>진단</h5>
+          <p>App Gateway가 참조 중인 version과 Key Vault에 실제 존재하는 version을 명령어로 직접 대조해 불일치를 증명했습니다.</p>
+          <div class="code">az network application-gateway ssl-cert list -g rg-azsis-kbeauty-dev --gateway-name agw-azsis-kbeauty-dev -o table
+az keyvault certificate show --vault-name kv-agw-azsis-kbeauty-dev --name www-sue019522-shop -o json
+az keyvault secret list-versions --vault-name kv-agw-azsis-kbeauty-dev --name www-sue019522-shop -o table</div>
+
+          <h5>조치</h5>
+          <p>App Gateway의 SSL certificate 참조를 최신 Key Vault secret version으로 갱신했습니다.</p>
+
+          <h5>재발 방지</h5>
+          <p>근본 원인은 GitHub Actions와 로컬 실행자가 서로 다른 Azure AD object ID를 사용하는데, AppGW Key Vault access policy가 단일 실행자 기준으로 관리되어 실행 주체가 바뀔 때마다 policy가 교체된 것이었습니다. 이를 고정 object ID 목록 기준으로 관리하도록 변경했습니다.</p>
+
+          <h5>배운 점</h5>
+          <p>HTTP는 정상인데 HTTPS만 실패하면 라우팅이 아니라 TLS 계층(인증서 로드)을 먼저 의심해야 합니다. 자동화가 중간 실패하면 존재하지 않는 참조를 남긴 채 배포가 끝날 수 있고, "참조 중인 값"과 "실제 존재하는 값"을 대조하는 것이 진단의 핵심입니다.</p>
+        </div>
+      </details>
+
+      <details class="acc">
+        <summary><span>DB Failover 시 Connection 갱신 문제<div class="acc-meta">Azure HA Infra · Tomcat · Spring DataSource</div></span><span class="plus">+</span></summary>
+        <div class="acc-body">
+          <h5>상황</h5>
+          <p>WAS Tier 담당 중, DB Failover 테스트에서 Zone이 전환되었지만 시스템 정보 화면에 새 DB 정보가 표시되지 않는 문제가 발생했습니다.</p>
+
+          <h5>원인 분석</h5>
+          <div class="flow">DB Failover 테스트 → DB 정보 시각화 불가
+→ nslookup으로 DB의 DNS가 변경된 것을 확인
+→ 애플리케이션의 Connection 객체가 자동 갱신되지 않음을 확인</div>
+          <p>Failover로 DB의 DNS는 정상 변경되었으나, 애플리케이션이 기존 Connection 객체를 그대로 유지하고 있는 것이 근본 원인이었습니다.</p>
+
+          <h5>해결</h5>
+          <p><code>DataSource-config.xml</code>의 DataSource 옵션을 수정해 Connection 객체가 재생성되도록 설정했습니다. 자동화를 최우선 기준으로 두어, 바뀐 DB 정보가 자동으로 반영되도록 방향을 잡았습니다.</p>
+
+          <h5>결과</h5>
+          <p>DB Host 정보 출력 불가 → 출력 가능으로 해결, Failover 상황에서도 안정적인 서비스 운영이 가능해졌습니다.</p>
+
+          <h5>배운 점</h5>
+          <p>인프라만 잘 갖춰져 있어도 애플리케이션(워크로드)이 받쳐주지 않으면 정상 운영이 어렵다는 점을 체감했습니다. 인프라와 워크로드를 하나의 운영 흐름으로 바라보는 관점을 얻었습니다.</p>
+        </div>
+      </details>
+
+      <p class="security-note" style="color:var(--on-dark-mute);">본 문서에는 실제 DB 접속 정보, 계정, 호스트명, 비밀번호, Access Key 등 민감 정보를 포함하지 않습니다.</p>
+    </div>
+  </section>
+
+  <!-- CAREER -->
+  <section class="shell section-tight" id="career">
+    <div class="block block-cream">
+      <div class="eyebrow">CAREER BACKGROUND</div>
+      <h2 class="heading-xl">웹 개발 교육 5년의 경험을<br>클라우드 운영 역량으로 연결합니다.</h2>
+      <p class="lead">Java, Spring, Database, Git/GitHub, Linux, AWS EC2 배포를 강의하고 프로젝트를 지도하며 애플리케이션 구조와 배포 흐름을 설명해왔습니다. 이 경험을 바탕으로 인프라 문제를 워크로드 관점까지 함께 분석합니다.</p>
+
+      <div class="grid grid-2" style="margin-top:28px;">
+        <div class="feature-card">
+          <h3>Education & Certification</h3>
+          <ul class="role-list">
+            <li>AI MSP 베스핀글로벌 멀티클라우드 엔지니어 부트캠프 — AWS, Azure, Docker, Kubernetes, Terraform, CI/CD, DR Architecture</li>
+            <li>빅데이터 분석서비스 개발자 과정 — Java, Python, JSP/Servlet, Spring, Database, Linux, AWS EC2 배포</li>
+            <li>정보처리기사</li>
+          </ul>
+        </div>
+        <div class="feature-card">
+          <h3>5년의 교육 경험이 남긴 것</h3>
+          <ul class="role-list">
+            <li>애플리케이션 구조 이해</li>
+            <li>문제를 설명하고 문서화하는 능력</li>
+            <li>팀 프로젝트 관리 및 협업 경험</li>
+            <li>DB, WAS, 배포 흐름에 대한 이해</li>
+            <li>장애 상황을 단계적으로 분석하는 습관</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="shell">
+    <div class="brand">박수현 · Cloud Engineer Portfolio</div>
+    <div class="muted">PUBLIC PORTFOLIO · NO SECRET · NO ACCESS KEY · NO PASSWORD · NO PERSONAL CONTACT INFO</div>
+    <div class="muted">© 2026 Cloud Engineer Portfolio. Built for GitHub Pages.</div>
+  </div>
+</footer>
+
+<script>
+function switchTab(id, btn){
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+  document.getElementById('tab-' + id).classList.add('active');
+  btn.classList.add('active');
+}
+</script>
+
+</body>
+</html>
