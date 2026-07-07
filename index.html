@@ -116,7 +116,7 @@ h1,h2,h3,h4{margin:0; font-weight:700; letter-spacing:-0.6px; color:var(--ink);}
 .grid-4{grid-template-columns:repeat(4,minmax(0,1fr));}
 
 .feature-card{background:var(--canvas); border-radius:var(--r-md); padding:28px;}
-.feature-card-soft{background:var(--surface-card); border-radius:var(--r-md); padding:28px;}
+.feature-card-soft{background:var(--secondary-bg); border-radius:var(--r-md); padding:28px;}
 .feature-card h3, .feature-card-soft h3{font-size:18px; margin-bottom:8px;}
 .feature-card p, .feature-card-soft p{font-size:14px; color:var(--mute); line-height:1.55; margin:0;}
 
@@ -153,7 +153,7 @@ h1,h2,h3,h4{margin:0; font-weight:700; letter-spacing:-0.6px; color:var(--ink);}
   border-radius:var(--r-full); padding:10px 18px; font-size:13px; font-weight:700;
   font-family:inherit;
 }
-.chip.active{background:var(--ink); color:var(--on-dark);}
+.chip.active{background:#103c25; color:var(--on-dark);}
 
 .tab-panel{display:none;}
 .tab-panel.active{display:block;}
@@ -286,7 +286,7 @@ pre, .code{
   <section class="hero shell">
     <div class="eyebrow">CLOUD ENGINEER / DEVOPS PORTFOLIO</div>
     <h1 class="display-xl">Application을 이해하는<br>Cloud Engineer</h1>
-    <p class="lead">Java/Spring 기반 웹 개발 교육과 프로젝트 운영 경험을 바탕으로, Kubernetes · Terraform · CI/CD · Multi-Cloud DR 환경을 설계하고 운영하는 클라우드 엔지니어 박수현입니다.</p>
+    <p class="lead">Java/Spring 기반 웹 개발 교육과 프로젝트 운영 경험을 바탕으로, <br> Kubernetes · Terraform · CI/CD · Multi-Cloud DR 환경을 설계하고 운영하는 클라우드 엔지니어 박수현입니다.</p>
     <div class="btn-row" style="margin-top:28px;">
       <a class="btn btn-primary" href="#main-project">대표 프로젝트 보기</a>
       <a class="btn btn-secondary" href="https://github.com/cloud-sue" target="_blank" rel="noopener">GitHub</a>
@@ -327,27 +327,27 @@ pre, .code{
     </div>
     <div class="grid grid-3">
       <div class="feature-card-soft">
-        <h3>Cloud Architecture</h3>
+        <h3>클라우드 아키텍처</h3>
         <p>Azure/AWS 기반 3-Tier, 고가용성, 멀티클라우드 DR 아키텍처 설계 및 구현</p>
       </div>
       <div class="feature-card-soft">
-        <h3>Kubernetes Operation</h3>
+        <h3>쿠버네티스 운영</h3>
         <p>AKS/EKS 환경에서 Web/WAS 컨테이너 배포, Service, Ingress, Probe, HPA 구성</p>
       </div>
       <div class="feature-card-soft">
-        <h3>IaC & Automation</h3>
+        <h3>IaC 자동화</h3>
         <p>Terraform 모듈화, Remote State, GitHub Actions, ArgoCD 기반 자동화 경험</p>
       </div>
       <div class="feature-card-soft">
-        <h3>Troubleshooting</h3>
+        <h3>트러블슈팅</h3>
         <p>DB Failover, Redis Session, Secret 주입, 배포/인증 오류 원인 분석 및 해결</p>
       </div>
       <div class="feature-card-soft">
-        <h3>Application Understanding</h3>
+        <h3>애플리케이션 이해</h3>
         <p>Java/Spring, DB, WAS, 배포 흐름 이해를 기반으로 인프라-워크로드 문제 연결</p>
       </div>
       <div class="feature-card-soft">
-        <h3>Documentation</h3>
+        <h3>문서화</h3>
         <p>설계 이유, 장애 원인, 해결 과정, 회고를 문서화하여 설명 가능한 포트폴리오 구성</p>
       </div>
     </div>
@@ -522,8 +522,8 @@ backend "azurerm" {
         </div>
 
         <div class="btn-row">
-          <a class="btn btn-primary" href="https://github.com/cloud-sue/pj3_team_multicloud-dr-azure" target="_blank" rel="noopener">Azure Repo</a>
-          <a class="btn btn-secondary" href="https://github.com/cloud-sue/pj3_team_multicloud-dr-aws" target="_blank" rel="noopener">AWS Repo</a>
+          <a class="btn btn-primary" href="https://github.com/cloud-sue/pj3_team_multicloud-dr-azure.git" target="_blank" rel="noopener">Azure Repo</a>
+          <a class="btn btn-secondary" href="https://github.com/cloud-sue/pj3_team_multicloud-dr-aws.git" target="_blank" rel="noopener">AWS Repo</a>
         </div>
       </div>
     </div>
@@ -816,7 +816,7 @@ az keyvault secret list-versions --vault-name kv-agw-azsis-kbeauty-dev --name ww
 
 <footer class="footer">
   <div class="shell">
-    <div class="brand">박수현 · Cloud Engineer Portfolio</div>
+    <div class="brand"><span style="color:var(--ink);">박수현</span> · Cloud Engineer Portfolio</div>
     <div class="muted">PUBLIC PORTFOLIO · NO SECRET · NO ACCESS KEY · NO PASSWORD · NO PERSONAL CONTACT INFO</div>
     <div class="muted">© 2026 Cloud Engineer Portfolio. Built for GitHub Pages.</div>
   </div>
